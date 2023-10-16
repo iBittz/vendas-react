@@ -12,9 +12,7 @@ const Login = ({ setLoggedIn, api }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(password);
     const passwordCrypt = SHA256(password).toString();
-    console.log(passwordCrypt);
     try {
       const response = await fetch(`${api}/login`, {
         method: 'POST',
