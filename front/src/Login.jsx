@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './Forms/Button';
 import Input from './Forms/Input';
+import { SHA256 } from 'crypto-js';
 
 const Login = ({ setLoggedIn, api }) => {
   const [username, setUsername] = useState('');
@@ -11,13 +12,16 @@ const Login = ({ setLoggedIn, api }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(password);
+    const passwordCrypt = SHA256(password).toString();
+    console.log(passwordCrypt);
     try {
       const response = await fetch(`${api}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password: passwordCrypt }),
       });
       if (response.ok) {
         setLoggedIn(true);
