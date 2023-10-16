@@ -4,14 +4,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Titulo from '../Titulo';
 import Button from '../Forms/Button';
 
-const AtualizaCliente = ({ campos }) => {
+const AtualizaCliente = ({ campos, api }) => {
   const { id } = useParams();
   const [dados, setDados] = React.useState(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
     document.title = 'Atualização de Cliente - ID: ' + id;
-    fetch(`http://localhost:3000/cliente/${id}`, {
+    fetch(`${api}/cliente/${id}`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -28,7 +28,7 @@ const AtualizaCliente = ({ campos }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/cliente/${id}`, {
+    fetch(`${api}/cliente/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

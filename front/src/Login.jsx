@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Forms/Button';
 import Input from './Forms/Input';
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn, api }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,7 +12,7 @@ const Login = ({ setLoggedIn }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${api}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

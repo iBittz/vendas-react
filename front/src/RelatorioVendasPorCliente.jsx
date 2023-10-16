@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-function RelatorioVendaPorCliente({ loggedIn }) {
+function RelatorioVendaPorCliente({ loggedIn, api }) {
   const [clientes, setClientes] = useState([]);
   const [orderBy, setOrderBy] = useState('dta_ult_pedido_desc'); // default order by dataUltimoPedido_desc
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function RelatorioVendaPorCliente({ loggedIn }) {
   }, [loggedIn]);
   useEffect(() => {
     async function fetchClientes() {
-      const data = await fetch('http://localhost:3000/cliente').then((res) => {
+      const data = await fetch(`${api}/cliente`).then((res) => {
         if (res.ok) {
           return res.json();
         }

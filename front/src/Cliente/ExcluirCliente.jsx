@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../Forms/Button';
 import React from 'react';
 
-const ExcluirCliente = () => {
+const ExcluirCliente = (api) => {
   const { id } = useParams();
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -10,7 +10,7 @@ const ExcluirCliente = () => {
   });
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/cliente/${id}`, {
+    fetch(`${api}/cliente/${id}`, {
       method: 'DELETE',
     });
     navigate('/cliente/excluir');

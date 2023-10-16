@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ListaClientes = ({ acao, legenda }) => {
+const ListaClientes = ({ acao, legenda, api }) => {
   const [dados, setDados] = React.useState([]);
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/cliente', {
+    fetch(`${api}/cliente`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

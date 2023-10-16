@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import style from './RelatorioVenda.module.css';
 import Input from './Forms/Input';
 
-function RelatorioVendas({ loggedIn }) {
+function RelatorioVendas({ loggedIn, api }) {
   const [startDate, setStartDate] = React.useState('2023-10-05');
   const [endDate, setEndDate] = React.useState('2023-10-15');
   const [salesData, setSalesData] = React.useState(null);
@@ -35,18 +35,16 @@ function RelatorioVendas({ loggedIn }) {
     setSalesData(null);
     let s = startDate.replace(/-/g, '');
     let e = endDate.replace(/-/g, '');
-    const vendas = await fetch(
-      `http://localhost:3000/vendas?start=${s}&end=${e}`,
-    );
+    const vendas = await fetch(`${api}/vendas?start=${s}&end=${e}`);
     const data = await vendas.json();
     await Promise.all(
       data.map(async (venda) => {
-        const itens = await fetch(
-          `http://localhost:3000/itens/${venda.cod_venda}`,
-        ).then((res) => res.json());
-        const cliente = await fetch(
-          `http://localhost:3000/cliente/${venda.cod_cliente}`,
-        ).then((res) => res.json());
+        const itens = await fetch(`${api}/itens/${venda.cod_venda}`).then(
+          (res) => res.json(),
+        );
+        const cliente = await fetch(`${api}/cliente/${venda.cod_cliente}`).then(
+          (res) => res.json(),
+        );
         venda.itens = itens;
         venda.cliente = cliente;
       }),

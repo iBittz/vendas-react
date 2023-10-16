@@ -9,6 +9,7 @@ import RelatorioVendasPorCliente from './RelatorioVendasPorCliente';
 import Titulo from './Titulo';
 
 function App() {
+  const API = 'https://vendas-reat.onrender.com';
   const [loggedIn, setLoggedIn] = React.useState(
     localStorage.getItem('loggedIn') &&
       localStorage.getItem('loggedIn') === 'true'
@@ -36,16 +37,27 @@ function App() {
             path="/"
             element={<Titulo titulo="Selecione uma das opções acima" />}
           />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/cliente/*" element={<Cliente loggedIn={loggedIn} />} />
-          <Route path="/venda" element={<Venda loggedIn={loggedIn} />} />
+          <Route
+            path="/login"
+            element={<Login setLoggedIn={setLoggedIn} api={API} />}
+          />
+          <Route
+            path="/cliente/*"
+            element={<Cliente loggedIn={loggedIn} api={API} />}
+          />
+          <Route
+            path="/venda"
+            element={<Venda loggedIn={loggedIn} api={API} />}
+          />
           <Route
             path="/relatorio-vendas"
-            element={<RelatorioVendas loggedIn={loggedIn} />}
+            element={<RelatorioVendas loggedIn={loggedIn} api={API} />}
           />
           <Route
             path="/relatorio-vendas-cliente"
-            element={<RelatorioVendasPorCliente loggedIn={loggedIn} />}
+            element={
+              <RelatorioVendasPorCliente loggedIn={loggedIn} api={API} />
+            }
           />
         </Routes>
       </div>

@@ -6,7 +6,7 @@ import AtualizaCliente from './Cliente/AtualizaCliente';
 import ListaClientes from './Cliente/ListaClientes';
 import ExcluirCliente from './Cliente/ExcluirCliente';
 
-const Cliente = ({ loggedIn }) => {
+const Cliente = ({ loggedIn, api }) => {
   const [des_nome, setNome] = React.useState('');
   const [des_endereco, setEndereco] = React.useState('');
   const [num_endereco, setNumEndereco] = React.useState('');
@@ -78,20 +78,25 @@ const Cliente = ({ loggedIn }) => {
             </center>
           }
         />
-        <Route path="/cadastro" element={<CadastroCliente campos={campos} />} />
+        <Route
+          path="/cadastro"
+          element={<CadastroCliente api={api} campos={campos} />}
+        />
         <Route
           path="/atualizar"
-          element={<ListaClientes acao="atualizar" legenda="Atualizar" />}
+          element={
+            <ListaClientes api={api} acao="atualizar" legenda="Atualizar" />
+          }
         />
         <Route
           path="/atualizar/:id"
-          element={<AtualizaCliente campos={campos} />}
+          element={<AtualizaCliente api={api} campos={campos} />}
         />
         <Route
           path="/excluir"
-          element={<ListaClientes acao="excluir" legenda="Excluir" />}
+          element={<ListaClientes api={api} acao="excluir" legenda="Excluir" />}
         />
-        <Route path="/excluir/:id" element={<ExcluirCliente />} />
+        <Route path="/excluir/:id" element={<ExcluirCliente api={api} />} />
       </Routes>
     </>
   );

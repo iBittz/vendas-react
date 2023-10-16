@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Forms/Button';
 import Option from './Forms/Option';
 
-const Venda = ({ loggedIn }) => {
+const Venda = ({ loggedIn, api }) => {
   const [data, setData] = useState('');
   const [cliente, setCliente] = useState('');
   const [dados, setDados] = React.useState([]);
@@ -23,7 +23,7 @@ const Venda = ({ loggedIn }) => {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    fetch('http://localhost:3000/cliente', {
+    fetch(`${api}/cliente`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const Venda = ({ loggedIn }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch('http://localhost:3000/venda', {
+    fetch(`${api}/venda`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

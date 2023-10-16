@@ -3,7 +3,7 @@ import Input from '../Forms/Input';
 import Titulo from '../Titulo';
 import Button from '../Forms/Button';
 
-const CadastroCliente = ({ campos }) => {
+const CadastroCliente = ({ campos, api }) => {
   const [mensagem, setMensagem] = React.useState(null);
 
   const handleSubmit = (e) => {
@@ -31,7 +31,7 @@ const CadastroCliente = ({ campos }) => {
       alert('Preencha o campo contato!');
       return;
     } else {
-      fetch('http://localhost:3000/cliente', {
+      fetch(`${api}/cliente`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
