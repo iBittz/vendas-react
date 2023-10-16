@@ -9,8 +9,8 @@ import RelatorioVendasPorCliente from './RelatorioVendasPorCliente';
 import Titulo from './Titulo';
 
 function App() {
-  // const API = 'https://vendas-reat.onrender.com';
-  const API = 'http://localhost:3000';
+  const API = 'https://vendas-reat.onrender.com';
+  // const API = 'http://localhost:3000';
   const [loggedIn, setLoggedIn] = React.useState(
     localStorage.getItem('loggedIn') &&
       localStorage.getItem('loggedIn') === 'true'
