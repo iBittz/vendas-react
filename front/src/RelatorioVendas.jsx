@@ -5,8 +5,8 @@ import style from './RelatorioVenda.module.css';
 import Input from './Forms/Input';
 
 function RelatorioVendas({ loggedIn, api }) {
-  const [startDate, setStartDate] = React.useState('2023-10-05');
-  const [endDate, setEndDate] = React.useState('2023-10-15');
+  const [startDate, setStartDate] = React.useState('');
+  const [endDate, setEndDate] = React.useState('');
   const [salesData, setSalesData] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
