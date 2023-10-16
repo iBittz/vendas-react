@@ -25,7 +25,7 @@ const Login = ({ setLoggedIn, api }) => {
         setLoggedIn(true);
         navigate('/');
       } else {
-        setError(response.statusText);
+        setError(response.status);
       }
     } catch (error) {
       setError('An error occurred');
@@ -35,7 +35,8 @@ const Login = ({ setLoggedIn, api }) => {
   return (
     <center>
       <h1>Login</h1>
-      {error && <p>{error}</p>}
+      {error === 401 && <p>Usuário não habilitado</p>}
+      {error === 404 && <p>Usuário não encontrado</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <Input
